@@ -1,26 +1,27 @@
 
 class Ambiente {
   constructor(ambiente, ancho, largo) {
-      this.ambiente = ambiente.toUpperCase()
-      this.ancho = ancho
-      this.largo = largo
-      this.superficie = 0
+    this.ambiente = ambiente.toUpperCase()
+    this.ancho = ancho
+    this.largo = largo
+    this.superficie = 0
   }
   calculaSuperficie() {
-      this.superficie = (this.ancho * this.largo).toFixed(2)
+    this.superficie = (this.ancho * this.largo).toFixed(2)
   }
+  
 }
 // CLASE PLANPAGO-------------------------------------------------------------
 let plan = 0
 let cuotas = 0
 let precio = 0
-class PlanPago{
+class PlanPago {
   constructor(nombre, precioCdo, cuotas) {
     this.nombre = nombre
     this.precioContado = precioCdo
     this.cuotass = cuotas
   }
-  
+
   precio() {
     if (supTotal <= 18) {
       precio = this.precioContado
@@ -32,20 +33,34 @@ class PlanPago{
   }
   cuotas() {
     let PrecioCtas = 0
-    PrecioCtas = ( precio / this.cuotass ) * 1.04
+    PrecioCtas = (precio / this.cuotass) * 1.04
     return PrecioCtas
   }
 }
 // CLASE CLIENTE-------------------------------------------------------------------
 
-class Cliente{
-  constructor(nombre, email, celular){
+class Cliente {
+  constructor(nombre, email, celular) {
     this.nombre = nombre
     this.email = email
     this.celular = celular
   }
-  datosDelCliente(cliente){
-    console.log(cliente)
+  datosDelCliente() {
+    alert(`🙌Gracias por contactarnos y confiar en nosotros ${this.nombre},
+     a la brevedad nos contactaremos al celular ${this.celular}
+     y notificaremos al email ${this.email} y te indicaremos como seguir ✅
+     
+     TÚ CONTACTO
+     
+     Descripcion:
+     ${info}
+     * con un estilo ${estilos[estilo-1]}
+     * de colores ${colores[0]}, ${colores[1]}, ${colores[2]}
+     * el arqui que hará mi remodelacio será ${arquis[arqui-1]}
+     * en un plan ${planes[plan-1]}, en cuotas ${cuotas} con tarjeta ${tarjetas[tarjeta-1]}
+     * precio total de $${planPersonalizado.precio()} 
+     * en ${cuotas} cuotas de $${planPersonalizado.cuotas()}
+     `)
   }
 }
 
@@ -66,7 +81,7 @@ let tarjetas = ['Mercado Pago', 'Ualá', 'Visa', 'Mastercard', 'Link', 'Banelco'
 // INTRO----------------------------------------------------------------------------------------
 alert('💡BIENVENIDO AL SIMULADOR DE CARGA Y CÁLCULO DE COSTO DE TÚ REMODELACIÓN, VAMOS A COMENZAR!!')
 
-debugger
+
 // FUNCION PARA VALIDAR INGRESO DE CAMPO, STRING Y QUE NO QUEDE VACIO---------------------------
 function validaStringVacios(promp) {
   while (promp === '' || !isNaN(promp)) {
@@ -97,16 +112,16 @@ console.log(info)
 let respuesta = 'S'
 const ambientes = []
 while (respuesta === 'S') {
-    ambiente = validaStringVacios(prompt('Que ambiente es? ej.: Cocina'))
+  ambiente = validaStringVacios(prompt('Que ambiente es? ej.: Cocina'))
 
-    ancho = validaNumerosVacios(parseFloat(prompt('Cúal es el ancho de tú ambiente?')))
+  ancho = validaNumerosVacios(parseFloat(prompt('Cúal es el ancho de tú ambiente?')))
 
-    largo = validaNumerosVacios(parseFloat(prompt('Ahora, el largo del ambiente')))
-    
+  largo = validaNumerosVacios(parseFloat(prompt('Ahora, el largo del ambiente')))
 
-    ambientes.push(new Ambiente(ambiente, ancho, largo))
 
-    respuesta = prompt('Si queres agregar otro ambiente, escribi la letra "s", caso contrario cualquier otro caracter').toUpperCase()
+  ambientes.push(new Ambiente(ambiente, ancho, largo))
+
+  respuesta = prompt('Si queres agregar otro ambiente, escribi la letra "s", caso contrario cualquier otro caracter').toUpperCase()
 }
 
 for (const i of ambientes) i.calculaSuperficie()
@@ -115,12 +130,14 @@ console.log(ambientes)
 let borra = validaStringVacios(prompt('Escribí "b" si queres borrar el último ambiente, caso contrario cualquier tecla').toUpperCase())
 while (borra === 'B') {
   console.log(ambientes.length)
-    if (ambientes.length != 0) {
-        ambientes.pop()
-        console.log(ambientes.length)
-        borra = prompt('Se ha eliminado con éxito, queres borrar otro ambiente? "b" borrar, cualquier otra letra para continuar').toUpperCase()
-    } else  {alert('No hay mas ambientes para borrar!') 
-            borra = ''}
+  if (ambientes.length != 0) {
+    ambientes.pop()
+    console.log(ambientes.length)
+    borra = prompt('Se ha eliminado con éxito, queres borrar otro ambiente? "b" borrar, cualquier otra letra para continuar').toUpperCase()
+  } else {
+    alert('No hay mas ambientes para borrar!')
+    borra = ''
+  }
 }
 
 // ELIJO EL ESTILO ---------------------------------------------------------------------------
@@ -165,10 +182,10 @@ while (plan != 1 && plan != 2) {
 }
 
 let supTotal = 0
-for (const i of ambientes){
+for (const i of ambientes) {
   console.log(supTotal += parseFloat(i.superficie))
 }
-console.log(supTotal )
+console.log(supTotal)
 
 if (plan === 1) {
   precio = 30000
@@ -195,10 +212,10 @@ alert(`La tarjeta que elgiste es: ${tarjetas[tarjeta - 1]}`)
 
 // CARGA DE DATOS DEL CLIENTE-------------------------------------------------------------------
 
-const nombreCliente = validaStringVacios(prompt('Ingresa tú nombre y apellido para contacto')) 
+const nombreCliente = validaStringVacios(prompt('Ingresa tú nombre y apellido para contacto'))
 
 
-const emailCliente = validaStringVacios(prompt('Ahora tú email')) 
+const emailCliente = validaStringVacios(prompt('Ahora tú email'))
 
 
 let celularCliente = validaNumerosVacios(prompt('Y por último, tú celular'))
@@ -207,6 +224,7 @@ let celularCliente = validaNumerosVacios(prompt('Y por último, tú celular'))
 // CREACION DE INSTANCIA CLIENTE--------------------------------------------------------
 const datosCliente = new Cliente(nombreCliente, emailCliente, celularCliente)
 datosCliente.datosDelCliente()
+
 
 
 
